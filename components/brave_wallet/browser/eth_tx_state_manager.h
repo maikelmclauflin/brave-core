@@ -9,7 +9,7 @@
 #include <string>
 #include <vector>
 
-#include "base/containers/flat_map.h"
+#include "base/gtest_prod_util.h"
 #include "base/optional.h"
 #include "base/time/time.h"
 #include "brave/components/brave_wallet/browser/brave_wallet_types.h"
@@ -41,6 +41,7 @@ class EthTxStateManager {
     explicit TxMeta(const EthTransaction& tx);
     TxMeta(const TxMeta&);
     ~TxMeta();
+    bool operator==(const TxMeta&) const;
 
     std::string id;
     TransactionStatus status = TransactionStatus::UNAPPROVED;
@@ -74,7 +75,6 @@ class EthTxStateManager {
 
  private:
   PrefService* prefs_;
-  base::flat_map<std::string, TxMeta> tx_meta_map_;
 };
 
 }  // namespace brave_wallet
