@@ -1752,15 +1752,11 @@ void RewardsServiceImpl::GetPublisherActivityFromUrl(
       GetDomainAndRegistry(origin.host(), INCLUDE_PRIVATE_REGISTRIES);
   std::string path = parsed_url.PathForRequest();
 #if BUILDFLAG(IPFS_ENABLED)
-  if (parsed_url.SchemeIs(ipfs::kIPNSScheme)) {
-    std::string cid;
-    if (!ipfs::GetRegistryDomainFromIPNS(parsed_url, &cid, &path))
-      return;
-    origin = GURL(parsed_url.scheme() + "://" + cid);
-    baseDomain = cid;
-  } else if (parsed_url.SchemeIs(ipfs::kIPFSScheme)) {
-    OnPanelPublisherInfo(ledger::type::Result::NOT_FOUND, nullptr, windowId);
-    return;
+  if (baseDomain.empty()) {
+    baseDomain = ipfs::GetRegistryDomainFromIPNS(parsed_url);
+    if (!baseDomain.empty()) {
+      origin = GURL(parsed_url.scheme() + "://" + baseDomain);
+    }
   }
 #endif
   if (baseDomain == "") {
