@@ -12,7 +12,7 @@
   ShouldShowAppsShortcutInBookmarkBar_Unused
 
 #if defined(TOOLKIT_VIEWS)
-#define GetBookmarkFolderIcon GetBookmarkFolderIcon_Chromium
+#define GetBookmarkFolderIcon GetBookmarkFolderIcon_UnUsed
 #endif
 
 #include "../../../../../../chrome/browser/ui/bookmarks/bookmark_utils.cc"
@@ -36,14 +36,15 @@ bool ShouldShowAppsShortcutInBookmarkBar(Profile* profile) {
 
 
 #if defined(TOOLKIT_VIEWS)
-gfx::ImageSkia GetBookmarkFolderIcon(SkColor text_color) {
+ui::ImageModel GetBookmarkFolderIcon(SkColor text_color) {
   int resource_id =
       color_utils::IsDark(text_color) ? IDR_BRAVE_BOOKMARK_FOLDER_CLOSED
                                       : IDR_BRAVE_BOOKMARK_FOLDER_CLOSED_WHITE;
   gfx::ImageSkia folder = *ui::ResourceBundle::GetSharedInstance()
                               .GetNativeImageNamed(resource_id)
                               .ToImageSkia();
-  return gfx::ImageSkia(std::make_unique<RTLFlipSource>(folder), folder.size());
+  return ui::ImageModel::FromImageSkia(
+      gfx::ImageSkia(std::make_unique<RTLFlipSource>(folder), folder.size()));
 }
 #endif
 
