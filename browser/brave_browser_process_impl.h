@@ -63,6 +63,10 @@ namespace ipfs {
 class BraveIpfsClientUpdater;
 }
 
+namespace brave_wallet {
+class WalletDataFilesUpdater;
+}
+
 namespace speedreader {
 class SpeedreaderRewriterService;
 }
@@ -105,6 +109,9 @@ class BraveBrowserProcessImpl : public BraveBrowserProcess,
 #endif
 #if BUILDFLAG(IPFS_ENABLED)
   ipfs::BraveIpfsClientUpdater* ipfs_client_updater() override;
+#endif
+#if BUILDFLAG(IPFS_ENABLED)
+  brave_wallet::WalletDataFilesUpdater* wallet_data_files_updater() override;
 #endif
   brave::BraveFederatedLearningService* brave_federated_learning_service();
   brave::BraveP3AService* brave_p3a_service() override;
@@ -163,6 +170,10 @@ class BraveBrowserProcessImpl : public BraveBrowserProcess,
 #endif
 #if BUILDFLAG(IPFS_ENABLED)
   std::unique_ptr<ipfs::BraveIpfsClientUpdater> ipfs_client_updater_;
+#endif
+#if BUILDFLAG(BRAVE_WALLET_ENABLED)
+  std::unique_ptr<brave_wallet::WalletDataFilesUpdater>
+      wallet_data_files_updater_;
 #endif
   std::unique_ptr<brave::BraveFederatedLearningService>
       brave_federated_learning_service_;

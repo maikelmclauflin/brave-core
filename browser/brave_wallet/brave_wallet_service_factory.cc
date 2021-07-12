@@ -5,6 +5,7 @@
 
 #include "brave/browser/brave_wallet/brave_wallet_service_factory.h"
 
+#include "brave/browser/brave_browser_process.h"
 #include "brave/components/brave_wallet/browser/brave_wallet_service.h"
 #include "chrome/browser/profiles/incognito_helpers.h"
 #include "components/keyed_service/content/browser_context_dependency_manager.h"
@@ -37,10 +38,15 @@ BraveWalletServiceFactory::~BraveWalletServiceFactory() {}
 
 KeyedService* BraveWalletServiceFactory::BuildServiceInstanceFor(
     content::BrowserContext* context) const {
+  auto* wallet_data_files_updater =
+      g_brave_browser_process
+          ? g_brave_browser_process->wallet_data_files_updater()
+          : nullptr;
   auto* default_storage_partition = context->GetDefaultStoragePartition();
   auto shared_url_loader_factory =
       default_storage_partition->GetURLLoaderFactoryForBrowserProcess();
   return new BraveWalletService(user_prefs::UserPrefs::Get(context),
+                                wallet_data_files_updater,
                                 shared_url_loader_factory);
 }
 

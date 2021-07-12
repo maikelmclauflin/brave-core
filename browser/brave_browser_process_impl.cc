@@ -75,6 +75,10 @@
 #include "brave/components/ipfs/ipfs_constants.h"
 #endif
 
+#if BUILDFLAG(BRAVE_WALLET_ENABLED)
+#include "brave/components/brave_wallet/browser/wallet_data_files_updater.h"
+#endif
+
 #if BUILDFLAG(ENABLE_SPEEDREADER)
 #include "brave/components/speedreader/speedreader_rewriter_service.h"
 #endif
@@ -419,3 +423,18 @@ BraveBrowserProcessImpl::ipfs_client_updater() {
   return ipfs_client_updater_.get();
 }
 #endif  // BUILDFLAG(IPFS_ENABLED)
+
+#if BUILDFLAG(BRAVE_WALLET_ENABLED)
+brave_wallet::WalletDataFilesUpdater*
+BraveBrowserProcessImpl::wallet_data_files_updater() {
+  if (wallet_data_files_updater_)
+    return wallet_data_files_updater_.get();
+
+  base::FilePath user_data_dir;
+  base::PathService::Get(chrome::DIR_USER_DATA, &user_data_dir);
+
+  wallet_data_files_updater_ = brave_wallet::WalletDataFilesUpdaterFactory(
+      brave_component_updater_delegate(), user_data_dir);
+  return wallet_data_files_updater_.get();
+}
+#endif

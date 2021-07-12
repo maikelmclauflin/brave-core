@@ -12,6 +12,7 @@
 
 #include "base/macros.h"
 #include "base/memory/weak_ptr.h"
+#include "brave/components/brave_wallet/browser/wallet_data_files_updater.h"
 #include "components/keyed_service/core/keyed_service.h"
 
 class PrefService;
@@ -30,10 +31,12 @@ class AssetRatioController;
 class SwapController;
 
 class BraveWalletService : public KeyedService,
+                           public WalletDataFilesUpdater::Observer,
                            public base::SupportsWeakPtr<BraveWalletService> {
  public:
   explicit BraveWalletService(
       PrefService* prefs,
+      WalletDataFilesUpdater* wallet_data_files_updater,
       scoped_refptr<network::SharedURLLoaderFactory> url_loader_factory);
   ~BraveWalletService() override;
 
@@ -47,11 +50,18 @@ class BraveWalletService : public KeyedService,
 
   std::vector<std::string> WalletAccountNames() const;
   void UpdateAccountNames(const std::vector<std::string>& account_names);
+  void RegisterWalletDataFilesUpdater();
+
   bool IsWalletBackedUp() const;
   void NotifyWalletBackupComplete();
 
  private:
+  // WalletDataFilesUpdater::Observer
+  void OnWalletDataReady(const base::FilePath& path) override;
+
   PrefService* prefs_;
+  WalletDataFilesUpdater* wallet_data_files_updater_;
+
   std::unique_ptr<brave_wallet::EthJsonRpcController> rpc_controller_;
   std::unique_ptr<brave_wallet::KeyringController> keyring_controller_;
   std::unique_ptr<brave_wallet::EthTxController> tx_controller_;

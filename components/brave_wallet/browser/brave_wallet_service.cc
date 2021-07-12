@@ -23,8 +23,9 @@ namespace brave_wallet {
 
 BraveWalletService::BraveWalletService(
     PrefService* prefs,
+    brave_wallet::WalletDataFilesUpdater* wallet_data_files_updater,
     scoped_refptr<network::SharedURLLoaderFactory> url_loader_factory)
-    : prefs_(prefs) {
+    : prefs_(prefs), wallet_data_files_updater_(wallet_data_files_updater) {
   rpc_controller_ = std::make_unique<brave_wallet::EthJsonRpcController>(
       brave_wallet::Network::kMainnet, url_loader_factory);
   keyring_controller_ =
@@ -35,6 +36,7 @@ BraveWalletService::BraveWalletService(
       std::make_unique<brave_wallet::AssetRatioController>(url_loader_factory);
   swap_controller_ =
       std::make_unique<brave_wallet::SwapController>(url_loader_factory);
+  RegisterWalletDataFilesUpdater();
 }
 
 BraveWalletService::~BraveWalletService() {}
@@ -107,6 +109,19 @@ bool BraveWalletService::IsWalletBackedUp() const {
 
 void BraveWalletService::NotifyWalletBackupComplete() {
   prefs_->SetBoolean(kBraveWalletBackupComplete, true);
+}
+
+void BraveWalletService::RegisterWalletDataFilesUpdater() {
+  if (wallet_data_files_updater_) {
+    wallet_data_files_updater_->Register();
+  }
+}
+
+void BraveWalletService::OnWalletDataReady(const base::FilePath& path) {
+  if (path.empty())
+    return;
+
+  LOG(ERROR) << "BraveWalletService::OnWalletDataReady";
 }
 
 }  // namespace brave_wallet

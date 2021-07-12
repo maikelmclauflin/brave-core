@@ -13,6 +13,7 @@
 
 #include "brave/components/brave_ads/browser/buildflags/buildflags.h"
 #include "brave/components/brave_referrals/buildflags/buildflags.h"
+#include "brave/components/brave_wallet/common/buildflags/buildflags.h"
 #include "brave/components/greaselion/browser/buildflags/buildflags.h"
 #include "brave/components/ipfs/buildflags/buildflags.h"
 #include "brave/components/speedreader/buildflags.h"
@@ -60,6 +61,10 @@ namespace ipfs {
 class BraveIpfsClientUpdater;
 }
 
+namespace brave_wallet {
+class WalletDataFilesUpdater;
+}
+
 namespace speedreader {
 class SpeedreaderRewriterService;
 }
@@ -95,6 +100,10 @@ class BraveBrowserProcess {
 #if BUILDFLAG(IPFS_ENABLED)
   virtual ipfs::BraveIpfsClientUpdater* ipfs_client_updater() = 0;
 #endif
+#if BUILDFLAG(BRAVE_WALLET_ENABLED)
+  virtual brave_wallet::WalletDataFilesUpdater* wallet_data_files_updater() = 0;
+#endif
+
   virtual brave::BraveP3AService* brave_p3a_service() = 0;
   virtual brave::BraveReferralsService* brave_referrals_service() = 0;
   virtual brave_stats::BraveStatsUpdater* brave_stats_updater() = 0;
