@@ -34,15 +34,14 @@ bool ShouldShowAppsShortcutInBookmarkBar(Profile* profile) {
   return false;
 }
 
-
 #if defined(TOOLKIT_VIEWS)
 ui::ImageModel GetBookmarkFolderIcon(SkColor text_color) {
-  int resource_id =
-      color_utils::IsDark(text_color) ? IDR_BRAVE_BOOKMARK_FOLDER_CLOSED
-                                      : IDR_BRAVE_BOOKMARK_FOLDER_CLOSED_WHITE;
+  int resource_id = color_utils::IsDark(text_color)
+                        ? IDR_BRAVE_BOOKMARK_FOLDER_CLOSED
+                        : IDR_BRAVE_BOOKMARK_FOLDER_CLOSED_WHITE;
   gfx::ImageSkia folder = *ui::ResourceBundle::GetSharedInstance()
-                              .GetNativeImageNamed(resource_id)
-                              .ToImageSkia();
+                               .GetNativeImageNamed(resource_id)
+                               .ToImageSkia();
   return ui::ImageModel::FromImageSkia(
       gfx::ImageSkia(std::make_unique<RTLFlipSource>(folder), folder.size()));
 }
