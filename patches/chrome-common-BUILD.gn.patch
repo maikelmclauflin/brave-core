@@ -1,5 +1,5 @@
 diff --git a/chrome/common/BUILD.gn b/chrome/common/BUILD.gn
-index 195f082ff6d37c19e37d18170909126c0a8fc47b..845994e88564e1ed8ad5ceda57f17e3a2944cc94 100644
+index 195f082ff6d37c19e37d18170909126c0a8fc47b..0676c83ecddf07512c296e0f7e724602ef7839e5 100644
 --- a/chrome/common/BUILD.gn
 +++ b/chrome/common/BUILD.gn
 @@ -66,6 +66,7 @@ source_set("channel_info") {
@@ -10,15 +10,7 @@ index 195f082ff6d37c19e37d18170909126c0a8fc47b..845994e88564e1ed8ad5ceda57f17e3a
    public_deps = [
      "//base",
      "//components/version_info",
-@@ -152,6 +153,7 @@ static_library("common") {
-   ]
- 
-   public_deps = [
-+    "//brave/common",
-     ":available_offline_content_mojom",
-     ":buildflags",
-     ":channel_info",
-@@ -545,6 +547,7 @@ static_library("non_code_constants") {
+@@ -545,6 +546,7 @@ static_library("non_code_constants") {
      "//printing/buildflags",
      "//ui/base:buildflags",
    ]
@@ -26,3 +18,11 @@ index 195f082ff6d37c19e37d18170909126c0a8fc47b..845994e88564e1ed8ad5ceda57f17e3a
  }
  
  component("chrome_features") {
+@@ -634,6 +636,7 @@ static_library("constants") {
+     deps += [ "//chromeos/crosapi/cpp" ]
+   } else if (is_linux || is_chromeos) {
+     sources += [ "chrome_paths_linux.cc" ]
++    deps += [ "//brave/common:channel_info" ]
+   }
+   if (is_mac) {
+     sources += [ "chrome_paths_mac.mm" ]
