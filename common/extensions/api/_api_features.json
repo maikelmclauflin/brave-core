@@ -157,5 +157,12 @@
     "allowlist": [
       "A321D47A2B4CA86898167A55CA8B2E02385EA7CD"  // brave
     ]
+  },
+  "braveHumanWeb": {
+    "channel": "stable",
+    "contexts": ["blessed_extension"],
+    "allowlist": [
+      "A321D47A2B4CA86898167A55CA8B2E02385EA7CD"  // brave
+    ]
   }
 }

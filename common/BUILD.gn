@@ -58,6 +58,7 @@ source_set("pref_names") {
                  "//brave/components/content_settings/core/browser",
                  "//brave/components/p3a",
                  "//brave/components/binance/browser",
+                 "//brave/components/human_web/browser",
                  "//brave/ios/app",
                  "//components/omnibox/browser",
                ]

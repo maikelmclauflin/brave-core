@@ -1,0 +1,11 @@
+static_library("browser") {
+  sources = [
+    "human_web_service.cc",
+    "human_web_service.h",
+  ]
+
+  deps = [
+    "//brave/common:pref_names",
+    "//components/prefs:prefs",
+  ]
+}

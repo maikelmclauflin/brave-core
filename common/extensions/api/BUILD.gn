@@ -73,6 +73,7 @@ json_features("behavior_features") {
 }
 
 brave_extensions_api_schema_sources = [
+  "brave_human_web.json",
   "brave_rewards.json",
   "brave_shields.json",
   "brave_theme.json",

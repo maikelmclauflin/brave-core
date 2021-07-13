@@ -1,0 +1,33 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+[
+  {
+    "namespace": "braveHumanWeb",
+    "description": "Use the <code>chrome.braveHumanWeb</code> API for human web.",
+    "compiler_options": {
+      "implemented_in": "brave/browser/extensions/api/brave_human_web_api.h"
+    },
+    "functions": [
+      {
+        "name": "getEnabled",
+        "type": "function",
+        "description": "Checks preferences to see if human web is enabled",
+        "parameters": [
+          {
+            "name": "callback",
+            "type": "function",
+            "description": "Function called with enabled status",
+            "parameters": [
+              {
+                "name": "enabled",
+                "type": "boolean"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

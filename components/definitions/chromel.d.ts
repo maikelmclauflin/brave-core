@@ -358,6 +358,10 @@ declare namespace chrome.ipfs {
   const resolveIPFSURI: (uri: string, callback: (gatewayUrl: string) => void) => void
 }
 
+declare namespace chrome.braveHumanWeb {
+  const getEnabled: (callback: (enabled: boolean) => void) => void
+}
+
 declare namespace chrome.test {
   const sendMessage: (message: string) => {}
 }
