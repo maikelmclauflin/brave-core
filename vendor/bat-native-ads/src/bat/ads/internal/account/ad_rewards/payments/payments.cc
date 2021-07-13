@@ -24,15 +24,24 @@ Payments::~Payments() = default;
 bool Payments::SetFromJson(const std::string& json) {
   absl::optional<base::Value> value = base::JSONReader::Read(json);
   if (!value || !value->is_list()) {
+    BLOG(0, "Failed to parse payment balance");
     return false;
   }
 
   base::ListValue* list = nullptr;
   if (!value->GetAsList(&list)) {
+    BLOG(0, "Failed to parse payment balance");
     return false;
   }
 
-  payments_ = GetFromList(list);
+  const PaymentList payments = GetFromList(list);
+
+  if (!DidReconcile(payments)) {
+    BLOG(0, "Payment balance not ready");
+    return false;
+  }
+
+  payments_ = payments;
 
   return true;
 }
@@ -115,21 +124,6 @@ double Payments::GetBalance() const {
   return balance;
 }
 
-bool Payments::DidReconcileBalance(
-    const double last_balance,
-    const double unreconciled_estimated_pending_rewards) const {
-  if (unreconciled_estimated_pending_rewards == 0.0) {
-    return true;
-  }
-
-  const double delta = GetBalance() - last_balance;
-  if (DoubleIsGreaterEqual(delta, unreconciled_estimated_pending_rewards)) {
-    return true;
-  }
-
-  return false;
-}
-
 base::Time Payments::CalculateNextPaymentDate(
     const base::Time& time,
     const base::Time& next_token_redemption_date) const {
@@ -198,13 +192,28 @@ base::Time Payments::CalculateNextPaymentDate(
   return next_payment_date;
 }
 
-PaymentInfo Payments::GetForThisMonth(const base::Time& time) const {
+PaymentInfo Payments::GetForMonth(const base::Time& time) const {
   const std::string month = GetTransactionMonth(time);
   const PaymentInfo payment = GetPaymentForTransactionMonth(month);
   return payment;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+
+bool Payments::DidReconcile(const PaymentList& payments) const {
+  double new_balance = 0.0;
+  for (const auto& payment : payments) {
+    new_balance += payment.balance;
+  }
+
+  const double old_balance = GetBalance();
+
+  if (DoubleIsLess(new_balance, old_balance)) {
+    return false;
+  }
+
+  return true;
+}
 
 PaymentList Payments::GetFromList(base::ListValue* list) const {
   DCHECK(list);
