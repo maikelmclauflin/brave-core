@@ -6,5 +6,7 @@
 #include "brave/browser/brave_browser_process_impl.h"
 
 #define BrowserProcessImpl BraveBrowserProcessImpl
+#define StartupBrowserCreatorImpl BraveStartupBrowserCreatorImpl
 #include "../../../../chrome/browser/chrome_browser_main.cc"
+#undef StartupBrowserCreatorImpl
 #undef BrowserProcessImpl
