@@ -47,4 +47,4 @@ bool CookieSettings::AnnotateAndMoveUserBlockedEphemeralCookies(
 
 }  // namespace network
 
-#include "../../../../../../services/network/cookie_settings.cc"  // NOLINT
+#include "../../../../services/network/cookie_settings.cc"
