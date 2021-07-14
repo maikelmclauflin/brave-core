@@ -1,5 +1,5 @@
 import * as React from 'react'
-import locale from '../../../constants/locale'
+import { getLocale } from 'components/common/locale'
 // Styled Components
 import {
   StyledWrapper,
@@ -23,15 +23,15 @@ const WalletMorePopup = (props: Props) => {
     <StyledWrapper>
       <PopupButton buttonType='primary' onClick={onClickLock}>
         <LockIcon />
-        <PopupButtonText>{locale.walletPopupLock}</PopupButtonText>
+        <PopupButtonText>{getLocale('braveWalletUiWalletPopupLock')}</PopupButtonText>
       </PopupButton>
       <PopupButton buttonType='secondary' onClick={onClickSetting}>
         <SettingsIcon />
-        <PopupButtonText>{locale.walletPopupSettings}</PopupButtonText>
+        <PopupButtonText>{getLocale('braveWalletUiWalletPopupSettings')}</PopupButtonText>
       </PopupButton>
       <PopupButton buttonType='secondary' onClick={onClickBackup}>
         <BackupIcon />
-        <PopupButtonText>{locale.walletPopupBackup}</PopupButtonText>
+        <PopupButtonText>{getLocale('braveWalletUiWalletPopupBackup')}</PopupButtonText>
       </PopupButton>
     </StyledWrapper>
   )

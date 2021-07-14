@@ -1,5 +1,5 @@
 import * as React from 'react'
-import locale from '../../../constants/locale'
+import { getLocale } from 'components/common/locale'
 // Styled Components
 import {
   StyledWrapper,
@@ -18,10 +18,10 @@ const BackupWarningBanner = (props: Props) => {
 
   return (
     <StyledWrapper>
-      <WarningText>{locale.backupWarningText}</WarningText>
+      <WarningText>{getLocale('braveWalletUiBackupWarningText')}</WarningText>
       <ButtonRow>
-        <BannerButton onClick={onBackup} buttonType='primary'>{locale.backupButton}</BannerButton>
-        <BannerButton onClick={onDismiss} buttonType='secondary'>{locale.dismissButton}</BannerButton>
+        <BannerButton onClick={onBackup} buttonType='primary'>{getLocale('braveWalletUiBackupButton')}</BannerButton>
+        <BannerButton onClick={onDismiss} buttonType='secondary'>{getLocale('braveWalletUiDismissButton')}</BannerButton>
       </ButtonRow>
     </StyledWrapper>
   )

@@ -57,7 +57,7 @@ function Container (props: Props) {
   }
   const removeAccount = (account: WalletAccountType) => {
     const newList = selectedAccounts.filter(
-      (accounts) => accounts.id !== account.id
+      (accounts: WalletAccountType) => accounts.id !== account.id
     )
     setSelectedAccounts(newList)
   }

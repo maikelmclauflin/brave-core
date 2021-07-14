@@ -1,17 +1,17 @@
 import { BuySendSwapObjectType } from '../constants/types'
-import locale from '../constants/locale'
+import { getLocale } from 'components/common/locale'
 
 export const BuySendSwapOptions: BuySendSwapObjectType[] = [
   {
     id: 'buy',
-    name: locale.buy
+    name: getLocale('braveWalletUiBuy')
   },
   {
     id: 'send',
-    name: locale.send
+    name: getLocale('braveWalletUiSend')
   },
   {
     id: 'swap',
-    name: locale.swap
+    name: getLocale('braveWalletUiSwap')
   }
 ]

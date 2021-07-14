@@ -1,5 +1,5 @@
 import * as React from 'react'
-import locale from '../../../constants/locale'
+import { getLocale } from 'components/common/locale'
 // Styled Components
 import {
   StyledWrapper,
@@ -13,7 +13,7 @@ export interface Props {
 const BackButton = (props: Props) => {
   const { onSubmit } = props
   return (
-    <StyledWrapper onClick={onSubmit}><BackIcon />{locale.back}</StyledWrapper>
+    <StyledWrapper onClick={onSubmit}><BackIcon />{getLocale('braveWalletUiBack')}</StyledWrapper>
   )
 }
 export default BackButton

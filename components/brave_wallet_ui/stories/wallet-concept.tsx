@@ -26,7 +26,7 @@ import { CurrentPriceMockData } from './mock-data/current-price-data'
 import { PriceHistoryMockData } from './mock-data/price-history-data'
 import { mockUserWalletPreferences } from './mock-data/user-wallet-preferences'
 import { formatePrices } from '../utils/format-prices'
-import locale from '../constants/locale'
+import { getLocale } from 'components/common/locale'
 export default {
   title: 'Wallet/Desktop',
   argTypes: {
@@ -149,7 +149,7 @@ export const _DesktopWalletConcept = (args: { onboarding: boolean, locked: boole
     const newList = list.map((wallet) => {
       const walletInfo = accountInfo(wallet)
       const id = walletInfo ? walletInfo.id : ''
-      const name = walletInfo ? walletInfo.name : locale.account
+      const name = walletInfo ? walletInfo.name : getLocale('braveWalletUiAccount')
       return {
         id: id,
         name: name,

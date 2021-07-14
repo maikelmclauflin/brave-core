@@ -17,7 +17,7 @@ import {
 } from './style'
 import { Tooltip } from '../../../shared'
 import { NavButton } from '../../../extension'
-import locale from '../../../../constants/locale'
+import { getLocale } from 'components/common/locale'
 import { Checkbox } from 'brave-ui'
 
 export interface Props {
@@ -33,13 +33,13 @@ function OnboardingBackup (props: Props) {
 
   return (
     <StyledWrapper>
-      <Title>{locale.recoveryTitle}</Title>
-      <Description>{locale.recoveryDescription}</Description>
+      <Title>{getLocale('braveWalletUiRecoveryTitle')}</Title>
+      <Description>{getLocale('braveWalletUiRecoveryDescription')}</Description>
       <WarningBox>
         <AlertIcon />
         <DisclaimerColumn>
-          <DisclaimerText><WarningText>{locale.recoveryWarning1} </WarningText>{locale.recoveryWarning2}</DisclaimerText>
-          <DisclaimerText>{locale.recoveryWarning3}</DisclaimerText>
+          <DisclaimerText><WarningText>{getLocale('braveWalletUiRecoveryWarning1')} </WarningText>{getLocale('braveWalletUiRecoveryWarning2')}</DisclaimerText>
+          <DisclaimerText>{getLocale('braveWalletUiRecoveryWarning3')}</DisclaimerText>
         </DisclaimerColumn>
       </WarningBox>
       <RecoveryPhraseContainer>
@@ -49,15 +49,15 @@ function OnboardingBackup (props: Props) {
           </RecoveryBubble>
         )}
       </RecoveryPhraseContainer>
-      <Tooltip text={locale.toolTipCopyToClipboard}>
-        <CopyButton onClick={onCopy}>{locale.buttonCopy}</CopyButton>
+      <Tooltip text={getLocale('braveWalletUiToolTipCopyToClipboard')}>
+        <CopyButton onClick={onCopy}>{getLocale('braveWalletUiButtonCopy')}</CopyButton>
       </Tooltip>
       <TermsRow>
         <Checkbox value={{ backedUp: isRecoveryTermsAccepted }} onChange={onSubmitTerms}>
-          <div data-key='backedUp'>{locale.recoveryTerms}</div>
+          <div data-key='backedUp'>{getLocale('braveWalletUiRecoveryTerms')}</div>
         </Checkbox>
       </TermsRow>
-      <NavButton disabled={!isRecoveryTermsAccepted} buttonType='primary' text={locale.buttonContinue} onSubmit={onSubmit} />
+      <NavButton disabled={!isRecoveryTermsAccepted} buttonType='primary' text={getLocale('braveWalletUiButtonContinue')} onSubmit={onSubmit} />
     </StyledWrapper>
   )
 }

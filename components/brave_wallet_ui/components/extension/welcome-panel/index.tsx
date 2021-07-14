@@ -8,7 +8,7 @@ import {
   RestoreButton
 } from './style'
 import { NavButton } from '../'
-import locale from '../../../constants/locale'
+import { getLocale } from 'components/common/locale'
 
 export interface Props {
   onSetup: () => void
@@ -20,10 +20,10 @@ function WelcomePanel (props: Props) {
   return (
     <StyledWrapper>
       <PageIcon />
-      <Title>{locale.welcomeTitle}</Title>
-      <Description>{locale.welcomeDescription}</Description>
-      <NavButton buttonType='primary' text={locale.welcomeButton} onSubmit={onSetup} />
-      <RestoreButton onClick={onRestore}>{locale.welcomeRestoreButton}</RestoreButton>
+      <Title>{getLocale('braveWalletUiWelcomeTitle')}</Title>
+      <Description>{getLocale('braveWalletUiWelcomeDescription')}</Description>
+      <NavButton buttonType='primary' text={getLocale('braveWalletUiWelcomeButton')} onSubmit={onSetup} />
+      <RestoreButton onClick={onRestore}>{getLocale('braveWalletUiWelcomeRestoreButton')}</RestoreButton>
     </StyledWrapper>
   )
 }

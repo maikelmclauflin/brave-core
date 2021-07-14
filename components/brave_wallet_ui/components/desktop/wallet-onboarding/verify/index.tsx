@@ -15,7 +15,7 @@ import {
 } from './style'
 import { NavButton } from '../../../extension'
 import { RecoveryObject } from '../../../../constants/types'
-import locale from '../../../../constants/locale'
+import { getLocale } from 'components/common/locale'
 
 export interface Props {
   onSubmit: () => void
@@ -39,8 +39,8 @@ function OnboardingVerify (props: Props) {
 
   return (
     <StyledWrapper>
-      <Title>{locale.verifyRecoveryTitle}</Title>
-      <Description>{locale.verifyRecoveryDescription}</Description>
+      <Title>{getLocale('braveWalletUiVerifyRecoveryTitle')}</Title>
+      <Description>{getLocale('braveWalletUiVerifyRecoveryDescription')}</Description>
       <SelectedPhraseContainer error={hasVerifyError}>
         {sortedPhrase.map((word, index) =>
           <SelectedBubble
@@ -52,7 +52,7 @@ function OnboardingVerify (props: Props) {
         )}
         {hasVerifyError &&
           <ErrorContainer>
-            <ErrorText>{locale.verifyError}</ErrorText>
+            <ErrorText>{getLocale('braveWalletUiVerifyError')}</ErrorText>
           </ErrorContainer>
         }
       </SelectedPhraseContainer>
@@ -68,7 +68,7 @@ function OnboardingVerify (props: Props) {
           </RecoveryBubble>
         )}
       </RecoveryPhraseContainer>
-      <NavButton disabled={sortedPhrase.length !== 12} buttonType='primary' text={locale.buttonVerify} onSubmit={onSubmit} />
+      <NavButton disabled={sortedPhrase.length !== 12} buttonType='primary' text={getLocale('braveWalletUiButtonVerify')} onSubmit={onSubmit} />
     </StyledWrapper>
   )
 }

@@ -21,7 +21,7 @@ import {
 
 // Components
 import { AccountListItem, AddButton } from '../../'
-import locale from '../../../../constants/locale'
+import { getLocale } from 'components/common/locale'
 
 export interface Props {
   toggleNav: () => void
@@ -64,11 +64,11 @@ function Accounts (props: Props) {
   return (
     <StyledWrapper>
       <PrimaryRow>
-        <SectionTitle>{locale.accountsPrimary}</SectionTitle>
+        <SectionTitle>{getLocale('braveWalletUiAccountsPrimary')}</SectionTitle>
         <ButtonsRow>
           <BackupButton onClick={onClickBackup}>
             <BackupIcon />
-            <BackupButtonText>{locale.backupButton}</BackupButtonText>
+            <BackupButtonText>{getLocale('braveWalletUiBackupButton')}</BackupButtonText>
           </BackupButton>
           <SettingsButton onClick={onClickSettings}>
             <SettingsIcon />
@@ -87,8 +87,8 @@ function Accounts (props: Props) {
           />
         )}
       </PrimaryListContainer>
-      <SectionTitle>{locale.accountsSecondary}</SectionTitle>
-      <DisclaimerText>{locale.accountsSecondaryDisclaimer}</DisclaimerText>
+      <SectionTitle>{getLocale('braveWalletUiAccountsSecondary')}</SectionTitle>
+      <DisclaimerText>{getLocale('braveWalletUiAccountsSecondaryDisclaimer')}</DisclaimerText>
       <SubDivider />
       <SecondaryListContainer isHardwareWallet={false}>
         {secondaryAccounts.map((account) =>
@@ -119,7 +119,7 @@ function Accounts (props: Props) {
       <AddButton
         buttonType='secondary'
         onSubmit={onClickAddAccount}
-        text={locale.addAccount}
+        text={getLocale('braveWalletUiAddAccount')}
       />
     </StyledWrapper>
   )

@@ -10,7 +10,7 @@ import {
   WalletAccountType,
   AssetPriceTimeframe
 } from '../../../../constants/types'
-import locale from '../../../../constants/locale'
+import { getLocale } from 'components/common/locale'
 
 // Utils
 import { formatePrices } from '../../../../utils/format-prices'
@@ -146,7 +146,7 @@ const Portfolio = (props: Props) => {
     <StyledWrapper>
       <TopRow>
         {!selectedAsset ? (
-          <BalanceTitle>{locale.balance}</BalanceTitle>
+          <BalanceTitle>{getLocale('braveWalletUiBalance')}</BalanceTitle>
         ) : (
           <BackButton onSubmit={goBack} />
         )}
@@ -166,7 +166,7 @@ const Portfolio = (props: Props) => {
             <AssetIcon icon={selectedAsset.icon} />
             <AssetNameText>{selectedAsset.name}</AssetNameText>
           </AssetRow>
-          <DetailText>{selectedAsset.name} {locale.price} ({selectedAsset.symbol})</DetailText>
+          <DetailText>{selectedAsset.name} {getLocale('braveWalletUiPrice')} ({selectedAsset.symbol})</DetailText>
           <PriceRow>
             <PriceText>${hoverPrice ? hoverPrice : selectedAssetPrice ? formatePrices(Number(selectedAssetPrice.usd)) : 0.00}</PriceText>
             <PercentBubble isDown={selectedAssetPrice ? selectedAssetPrice.change24Hour < 0 : false}>
@@ -186,7 +186,7 @@ const Portfolio = (props: Props) => {
       />
       {selectedAsset &&
         <>
-          <DividerText>{locale.accounts}</DividerText>
+          <DividerText>{getLocale('braveWalletUiAccounts')}</DividerText>
           <SubDivider />
           {accounts.map((account) =>
             <PortfolioAccountItem
@@ -203,10 +203,10 @@ const Portfolio = (props: Props) => {
             <AddButton
               buttonType='secondary'
               onSubmit={onClickAddAccount}
-              text={locale.addAccount}
+              text={getLocale('braveWalletUiAddAccount')}
             />
           </ButtonRow>
-          <DividerText>{locale.transactions}</DividerText>
+          <DividerText>{getLocale('braveWalletUiTransactions')}</DividerText>
           <SubDivider />
           {transactions?.map((transaction) =>
             <PortfolioTransactionItem
@@ -222,7 +222,7 @@ const Portfolio = (props: Props) => {
       }
       {!selectedAsset &&
         <>
-          <SearchBar placeholder={locale.searchText} action={filterAssets} />
+          <SearchBar placeholder={getLocale('braveWalletUiSearchText')} action={filterAssets} />
           {filteredAssetList.map((item) =>
             <PortfolioAssetItem
               action={selectAsset(item.asset)}
@@ -238,7 +238,7 @@ const Portfolio = (props: Props) => {
             <AddButton
               buttonType='secondary'
               onSubmit={addCoin}
-              text={locale.addCoin}
+              text={getLocale('braveWalletUiAddCoin')}
             />
           </ButtonRow>
         </>

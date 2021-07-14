@@ -16,7 +16,7 @@ import {
 import { TopNavOptions } from '../../../../options/top-nav-options'
 import { TopTabNav, BackupWarningBanner, AddAccountModal } from '../../'
 import { SearchBar, AppList } from '../../../shared'
-import locale from '../../../../constants/locale'
+import { getLocale } from 'components/common/locale'
 import { AppsList } from '../../../../options/apps-list-options'
 import { filterAppList } from '../../../../utils/filter-app-list'
 import { PortfolioView, AccountsView } from '../'
@@ -138,7 +138,7 @@ const CryptoView = (props: Props) => {
       {selectedTab === 'defi' &&
         <>
           <SearchBar
-            placeholder={locale.searchText}
+            placeholder={getLocale('braveWalletUiSearchText')}
             action={filterList}
           />
           <AppList
@@ -182,7 +182,7 @@ const CryptoView = (props: Props) => {
       {showAddModal &&
         <AddAccountModal
           accounts={accounts}
-          title={locale.addAccount}
+          title={getLocale('braveWalletUiAddAccount')}
           onClose={onCloseAddModal}
           onCreateAccount={onCreateAccount}
           onImportAccount={onImportAccount}

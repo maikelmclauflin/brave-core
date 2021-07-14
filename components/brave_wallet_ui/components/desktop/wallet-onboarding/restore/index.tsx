@@ -13,7 +13,7 @@ import {
 } from './style'
 import { PasswordInput } from '../../../shared'
 import { NavButton } from '../../../extension'
-import locale from '../../../../constants/locale'
+import { getLocale } from 'components/common/locale'
 import { Checkbox } from 'brave-ui'
 
 export interface Props {
@@ -60,40 +60,40 @@ function OnboardingRestore (props: Props) {
 
   return (
     <StyledWrapper>
-      <Title>{locale.restoreTite}</Title>
-      <Description>{locale.restoreDescription}</Description>
+      <Title>{getLocale('braveWalletUiRestoreTite')}</Title>
+      <Description>{getLocale('braveWalletUiRestoreDescription')}</Description>
       <FormWrapper>
         <RecoveryPhraseInput
           autoFocus={true}
-          placeholder={locale.restorePlaceholder}
+          placeholder={getLocale('braveWalletUiRestorePlaceholder')}
           onChange={inputRecoveryPhrase}
           value={recoveryPhrase}
           onKeyDown={handleKeyDown}
           type={showRecoveryPhrase ? 'text' : 'password'}
         />
-        {hasRestoreError && <ErrorText>{locale.restoreError}</ErrorText>}
+        {hasRestoreError && <ErrorText>{getLocale('braveWalletUiRestoreError')}</ErrorText>}
         <CheckboxRow>
           <Checkbox value={{ showPhrase: showRecoveryPhrase }} onChange={onShowRecoveryPhrase}>
-            <div data-key='showPhrase'>{locale.restoreShowPhrase}</div>
+            <div data-key='showPhrase'>{getLocale('braveWalletUiRestoreShowPhrase')}</div>
           </Checkbox>
         </CheckboxRow>
-        <FormText>{locale.restoreFormText}</FormText>
+        <FormText>{getLocale('braveWalletUiRestoreFormText')}</FormText>
         <InputColumn>
           <PasswordInput
-            placeholder={locale.createPasswordInput}
+            placeholder={getLocale('braveWalletUiCreatePasswordInput')}
             onChange={onPasswordChanged}
             hasError={hasPasswordError}
-            error={locale.createPasswordError}
+            error={getLocale('braveWalletUiCreatePasswordError')}
           />
           <PasswordInput
-            placeholder={locale.createPasswordInput2}
+            placeholder={getLocale('braveWalletUiCreatePasswordInput2')}
             onChange={onConfirmPasswordChanged}
             hasError={hasConfirmPasswordError}
-            error={locale.createPasswordError2}
+            error={getLocale('braveWalletUiCreatePasswordError2')}
           />
         </InputColumn>
       </FormWrapper>
-      <NavButton disabled={disabled} buttonType='primary' text={locale.welcomeRestoreButton} onSubmit={onSubmit} />
+      <NavButton disabled={disabled} buttonType='primary' text={getLocale('braveWalletUiWelcomeRestoreButton')} onSubmit={onSubmit} />
     </StyledWrapper>
   )
 }

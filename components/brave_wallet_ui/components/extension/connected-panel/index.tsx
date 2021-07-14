@@ -31,7 +31,7 @@ import { reduceAddress } from '../../../utils/reduce-address'
 import { copyToClipboard } from '../../../utils/copy-to-clipboard'
 import { WalletAccountType, PanelTypes } from '../../../constants/types'
 import { create, background } from 'ethereum-blockies'
-import locale from '../../../constants/locale'
+import { getLocale } from 'components/common/locale'
 
 export interface Props {
   selectedAccount: WalletAccountType
@@ -77,7 +77,7 @@ const ConnectedPanel = (props: Props) => {
         <BalanceColumn>
           <AccountCircle orb={orb} />
           <AccountNameText>{selectedAccount.name}</AccountNameText>
-          <Tooltip text={locale.toolTipCopyToClipboard}>
+          <Tooltip text={getLocale('braveWalletUiToolTipCopyToClipboard')}>
             <AccountAddressText onClick={onCopyToClipboard}>{reduceAddress(selectedAccount.address)}</AccountAddressText>
           </Tooltip>
         </BalanceColumn>

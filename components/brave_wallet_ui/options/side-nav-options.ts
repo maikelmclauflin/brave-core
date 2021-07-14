@@ -1,5 +1,5 @@
 import { NavObjectType } from '../constants/types'
-import locale from '../constants/locale'
+import { getLocale } from 'components/common/locale'
 import {
   WalletIconD,
   WalletIconL,
@@ -11,19 +11,19 @@ import {
 
 export const NavOptions: NavObjectType[] = [
   {
-    name: locale.sideNavCrypto,
+    name: getLocale('braveWalletUiSideNavCrypto'),
     primaryIcon: WalletIconL,
     secondaryIcon: WalletIconD,
     id: 'crypto'
   },
   {
-    name: locale.sideNavRewards,
+    name: getLocale('braveWalletUiSideNavRewards'),
     primaryIcon: RewardsIconL,
     secondaryIcon: RewardsIconD,
     id: 'rewards'
   },
   {
-    name: locale.sideNavCards,
+    name: getLocale('braveWalletUiSideNavCards'),
     primaryIcon: CreditCardIconL,
     secondaryIcon: CreditCardIconD,
     id: 'cards'

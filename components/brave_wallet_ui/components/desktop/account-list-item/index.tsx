@@ -3,7 +3,8 @@ import { reduceAddress } from '../../../utils/reduce-address'
 import { copyToClipboard } from '../../../utils/copy-to-clipboard'
 import { create } from 'ethereum-blockies'
 import { Tooltip } from '../../shared'
-import locale from '../../../constants/locale'
+import { getLocale } from 'components/common/locale'
+
 
 // Styled Components
 import {
@@ -48,7 +49,7 @@ function AccountListItem (props: Props) {
             {isHardwareWallet && <HardwareIcon />}
             <AccountName onClick={onClick}>{name}</AccountName>
           </AccountNameRow>
-          <Tooltip text={locale.toolTipCopyToClipboard}>
+          <Tooltip text={getLocale('braveWalletUiToolTipCopyToClipboard')}>
             <AccountAddress onClick={onCopyToClipboard}>{reduceAddress(address)}</AccountAddress>
           </Tooltip>
         </AccountAndAddress>

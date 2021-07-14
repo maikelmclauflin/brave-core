@@ -10,7 +10,7 @@ import {
 } from './style'
 import { PasswordInput } from '../../../shared'
 import { NavButton } from '../../../extension'
-import locale from '../../../../constants/locale'
+import { getLocale } from 'components/common/locale'
 
 export interface Props {
   onSubmit: () => void
@@ -42,25 +42,25 @@ function OnboardingCreatePassword (props: Props) {
       <IconBackground>
         <PageIcon />
       </IconBackground>
-      <Title>{locale.createPasswordTitle}</Title>
-      <Description>{locale.createPasswordDescription}</Description>
+      <Title>{getLocale('braveWalletUiCreatePasswordTitle')}</Title>
+      <Description>{getLocale('braveWalletUiCreatePasswordDescription')}</Description>
       <InputColumn>
         <PasswordInput
-          placeholder={locale.createPasswordInput}
+          placeholder={getLocale('braveWalletUiCreatePasswordInput')}
           onChange={onPasswordChanged}
-          error={locale.createPasswordError}
+          error={getLocale('braveWalletUiCreatePasswordError')}
           hasError={hasPasswordError}
           autoFocus={true}
         />
         <PasswordInput
-          placeholder={locale.createPasswordInput2}
+          placeholder={getLocale('braveWalletUiCreatePasswordInput2')}
           onChange={onConfirmPasswordChanged}
           onKeyDown={handleKeyDown}
-          error={locale.createPasswordError2}
+          error={getLocale('braveWalletUiCreatePasswordError2')}
           hasError={hasConfirmPasswordError}
         />
       </InputColumn>
-      <NavButton buttonType='primary' text={locale.buttonContinue} onSubmit={onSubmit} disabled={disabled} />
+      <NavButton buttonType='primary' text={getLocale('braveWalletUiButtonContinue')} onSubmit={onSubmit} disabled={disabled} />
     </StyledWrapper>
   )
 }
